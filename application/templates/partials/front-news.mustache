@@ -1,0 +1,11 @@
+<h2>Новости</h2>
+{{#news_list}}
+
+<p>	
+{{#date}}<i>{{date}}</i>{{/date}} 
+{{#title}}<a href="/news/view/{{id}}">{{title}}</a>{{/title}}<br>	
+{{#brief_text}}<span>{{brief_text}}</span>{{/brief_text}}
+<hr>
+</p>	
+{{/news_list}}
+<a href="/news/">все новости</a>

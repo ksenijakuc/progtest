@@ -158,6 +158,15 @@ Route::set('catalog', 'catalog/<cat_id>(/city/<city>)(/rooms/<rooms>)(/floor/<fl
         ));
 
 // Правила обработки URL страниц отдельных услуг
+Route::set('news_view', 'news/view/<new_id>', array(
+            'new_id' => '\d+',
+        ))
+        ->defaults(array(
+            'controller' => 'news',
+            'action' => 'view',
+        ));
+		
+// Правила обработки URL страниц новостей
 Route::set('catalog_view', 'catalog/view/<cat_id>', array(
             'cat_id' => '\d+',
         ))
@@ -165,7 +174,7 @@ Route::set('catalog_view', 'catalog/view/<cat_id>', array(
             'controller' => 'catalog',
             'action' => 'view',
         ));
-
+		
 // CRON
 // Правила обработки URL, которые используются для CRON работ
 Route::set('cron', 'admin/<controller>/cron/<action>(/<id>)')

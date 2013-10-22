@@ -1,0 +1,113 @@
+<div class="spcForm">
+    <!-- Breadcrumds -->
+    <div class="state">
+	<h2>{{#editable}}Редактирование новости{{/editable}}{{^editable}}Добавление новости{{/editable}}</h2>
+	Записи: <b>Новости</b>
+	{{#editable}}
+	&nbsp; / &nbsp; Запись: <b>Новость ID {{#cur_news}}{{id}}{{/cur_news}}</b>
+	{{/editable}}
+	{{^editable}}
+	&nbsp; / &nbsp; Запись: <b><новая></b>
+	{{/editable}}
+    </div>
+    <!-- /Breadcrumds -->
+
+
+    <form id="addBannerForm" name="addBannerForm" method="post" action="{{^editable}}/admin/news{{/editable}}" enctype="multipart/form-data">
+
+	<div class="toolBar">
+	    <div class="toolBarContainer">
+		<a href="#" title="сохранить" class="save_banner"><img src="{{image_path}}ok.png" alt="[сохранить]"><span>Сохранить</span></a>
+	    </div>
+	    <div class="toolBarContainer">
+		<a href="/admin/news" title="завершить без сохранения" class="btNeutral"><img src="{{image_path}}up1.png" alt="[завершить без сохранения]"/><span>Вернуться назад</span></a>
+	    </div>
+	</div>
+
+	<div id="error1">
+	    <span>При заполнении формы были допущены следующие ошибки:</span>
+	    <ul><li id="wysiwyg_error" style="display:none;">Введите текст</li></ul>
+	</div>
+
+	<div class="formFieldsWarapper">
+	    <div class="fieldWrapper odd">
+		<div class="eLabel">Идентификатор записи:</div>
+		<div class="efText">
+		    <input type="text" name="auto_id" id="auto_id" size="50" value="{{#editable}}{{#cur_news}}{{id}}{{/cur_news}}{{/editable}}{{^editable}}&lt;auto&gt;{{/editable}}" disabled />
+		    <input type="hidden" name="id" id="id" value="{{#editable}}{{#cur_news}}{{id}}{{/cur_news}}{{/editable}}"/>
+		</div>
+	    </div>
+	    <div class="fieldWrapper{{#even}} odd{{/even}}">
+			<div class="eLabel">Показывать на сайте*:</div>
+			<div class="efChoice">
+				<select name="status" id="status">
+					<option value="0">Нет</option>
+					<option value="1"{{#editable}}{{#cur_news}}{{#status}} selected{{/status}}{{/cur_news}}{{/editable}}>Да</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="fieldWrapper{{#even}} odd{{/even}}">
+			<div class="eLabel">Название*:</div>
+			<div class="efText">
+				<input type="text" name="title" id="title" value="{{#editable}}{{#cur_news}}{{title}}{{/cur_news}}{{/editable}}" />
+			</div>
+		</div>
+		
+		 
+			
+			
+		
+		<div class="fieldWrapper{{#even}} odd{{/even}}">
+			<div class="eLabel">Краткое описание:</div>
+			 <div class="efMulti">
+				<textarea name="brief_text" id="brief_text" style="width:100%">{{#editable}}{{#cur_news}}{{brief_text}}{{/cur_news}}{{/editable}}</textarea>
+			</div>
+		</div>
+	    
+		<div class="fieldWrapper{{#even}} odd{{/even}}">
+			<div class="eLabel">Полное описание*:</div>
+			 <div class="efMulti">
+			  <textarea style="width:100%" name="full_text" id="full_text" class="ckeditor">
+				{{#editable}}{{#cur_news}}{{full_text}}{{/cur_news}}{{/editable}}
+			  </textarea>
+			</div>
+		</div>
+		
+	    <div class="fieldWrapper">
+		<div class="eLabel">Картинка (формат файла: <b>jpg</b>, <b>png</b> или <b>gif</b>, рекомендуемая ширина 271px):</div>
+		<div class="efImage">
+		    <input name="image" id="image" type="file" size="50"/>
+		    {{!Если идет редактирование - выводим картинку}}
+		    {{#editable}}
+		    {{#cur_news}}
+		    <img src="/{{news_dir}}{{image}}"/>
+		    {{/cur_news}}
+		    {{/editable}}
+		    <input type="hidden" name="no_img" id="no_img" value="0"/>
+		</div>
+	    </div>
+
+
+	  
+	    
+	   
+	</div>
+
+	<div id="error2">
+	    <span>При заполнении формы были допущены ошибки. Список ошибок можно увидеть в начале страницы.</span>
+	</div>
+
+	<div class="toolBar">
+	    <div class="toolBarContainer">
+		<a href="#" title="сохранить" class="save_banner"><img src="{{image_path}}ok.png" alt="[сохранить]"><span>Сохранить</span></a>
+	    </div>
+	    <div class="toolBarContainer">
+		<a href="/admin/news" title="завершить без сохранения" class="btNeutral"><img src="{{image_path}}up1.png" alt="[завершить без сохранения]"/><span>Вернуться назад</span></a>
+	    </div>
+	</div>
+
+	<input type="hidden" name="action" id="action" value="{{#editable}}update{{/editable}}{{^editable}}create{{/editable}}"/>
+    </form>
+
+</div>

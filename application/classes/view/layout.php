@@ -53,6 +53,7 @@ class View_Layout extends Kohana_Kostache_Layout
         'mortgage-block' => 'partials/mortgage-block',
         'form-viewer' => 'partials/form-viewer',
         'form-exchange' => 'partials/form-exchange',
+		'front-news' => 'partials/front-news',
     );
 
     /*
@@ -411,5 +412,24 @@ class View_Layout extends Kohana_Kostache_Layout
             }
         }
     }
+	
+	public function news_list(){
+		static $news;
+		$newsO = Sprig::factory('news')->load(DB::select('*')->order_by("time", "desc")->limit("0,3"), NULL);
+		// Проходимся по всем баннерам
+		for ($i = 0; $i < count($newsO); $i++)
+		{
+			$news[$i] = $newsO[$i]->as_array();
+			$news[$i]['date'] = date("d-m-Y H:m:i",$news[$i]['time']);
+		}
+		 if (!empty($news))
+		{
+			return $news;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
 
 }

@@ -1,0 +1,10 @@
+<h1 class="b-page-title">Новости</h1>
+{{#news}}
+
+<p>	
+{{#date}}<i>{{date}}</i>{{/date}} 
+{{#title}}<a href="/news/view/{{id}}">{{title}}</a>{{/title}}<br>	
+{{#brief_text}}<span>{{brief_text}}</span>{{/brief_text}}
+<hr>
+</p>	
+{{/news}}
